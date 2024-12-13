@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "64c69342-cb42-4170-84a2-3ef7822c669d",
+		"name": "kursach",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36342683"
+	},
+	"item": [
+		{
+			"name": "https://k-kosterina.сделай.site/api/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"username\":\"Ivan\",\r\n\"password\":\"Passwor\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/login",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Людмила\",\r\n    \"last_name\":\"Костерина\",\r\n    \"username\":\"Lusi\",\r\n    \"phone\":\"+78343523\",\r\n    \"email\":\"mila@mail.ru\",\r\n    \"password\":\"Qwerty123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/registration",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Q7-lr2vR71kKuHjUuPDwDrxcSKvFd2Ws",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/user",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/products",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/change",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "cImpe6G1LU5yQCRNpxYby75K5JzdwfEB",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone\":\"+78343523232\",\r\n    \"email\":\"mila@mail.ru\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/change",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"change"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/product/search?query=то",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/product/search?type=то",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"product",
+						"search"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "то"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/cart/items",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "cImpe6G1LU5yQCRNpxYby75K5JzdwfEB",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/cart/items",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"cart",
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/cart/new",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "cImpe6G1LU5yQCRNpxYby75K5JzdwfEB",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_id\": 7,\r\n\"count\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/cart/new",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"cart",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/cart/items/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "gaav-MlWHXhLOv7viWB-1N2jov7IBEZX",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"count\":4}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/cart/items?id_cart=1",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"cart",
+						"items"
+					],
+					"query": [
+						{
+							"key": "id_cart",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/cart/del?id_cart=2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "gaav-MlWHXhLOv7viWB-1N2jov7IBEZX",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/cart/del?id_cart=5",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"cart",
+						"del"
+					],
+					"query": [
+						{
+							"key": "id_cart",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/product/new",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "i9giWcPeVZP8xF1xz9LWLR9WnAuZCjHF",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Торт \"Клубничная фантазия\"",
+							"type": "text"
+						},
+						{
+							"key": "type_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Оочень много клубники",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "/D:/загрузки с яндекса/tor.jpg"
+						},
+						{
+							"key": "cost",
+							"value": "2000",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/product/new",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"product",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "jEvzvg4xXJZYhkpfEiyT5zW0uAdgEg0X",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"phone\": \"+784343523\",\r\n\"address\": \"Оптиков 28\",\r\n\"date_delivery\":\"2024-12-31\",\r\n\"payment\":\"банковской картой\",\r\n\"comments\":\"1\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/order/new",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"order",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "jEvzvg4xXJZYhkpfEiyT5zW0uAdgEg0X",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/orders",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://k-kosterina.сделай.site/api/product/edit?id_product=1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "q_5V8R61IB4lSHA1TVU4KEJsSEFPMH1k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type_id\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://k-kosterina.сделай.site/api/product/edit?id_product=1",
+					"protocol": "https",
+					"host": [
+						"k-kosterina",
+						"сделай",
+						"site"
+					],
+					"path": [
+						"api",
+						"product",
+						"edit"
+					],
+					"query": [
+						{
+							"key": "id_product",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
