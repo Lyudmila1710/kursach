@@ -139,7 +139,16 @@ class CartController extends FunctionController
             }
             $productId = $request['product_id'];
           $count = $request['count']; // Установим значение по умолчанию
-    
+      // Валидация count - должно быть числом
+          if (!is_numeric($count)) {
+              return $this->send(422, [
+                  'error' => [
+                      'code' => 422,
+                      'message' => 'Validation error',
+                      'error' => 'Количество должно быть числом'
+                  ]
+              ]);
+          }
             // Проверка наличия товара
             $product = Product::findOne($productId);
             if (!$product) {
