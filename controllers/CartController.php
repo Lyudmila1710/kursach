@@ -69,7 +69,16 @@ class CartController extends FunctionController
                     ]
                 ]);
             }
-
+$count = $data['count'];
+                if (!is_numeric($count)) {
+                    return $this->send(422, [
+                        'error' => [
+                            'code' => 422,
+                            'message' => 'Validation error',
+                            'error' => 'Количество должно быть числом'
+                        ]
+                    ]);
+                }
             $cart = Cart::findOne($id_cart);
             if (!$cart) {
                 return $this->send(404, [
