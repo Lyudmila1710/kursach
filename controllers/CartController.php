@@ -130,14 +130,15 @@ $count = $data['count'];
         }
     }
         public function actionNew()
-        {
-            Yii::$app->response->format = Response::FORMAT_JSON;
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
     
-            $user = Users::getToken();
+        $user = Users::getToken();
         if ($user && $user->isAuthorized()) {
-                          // Получение данных из запроса
+            // Получение данных из запроса
             $request = Yii::$app->request->post();
-            if (empty($request['product_id'])&& empty($request['count'])) {
+            
+            if (empty($request['product_id']) || empty($request['count'])) {
                 return $this->send(422, [
                     'error' => [
                         'code' => 422,
@@ -146,76 +147,82 @@ $count = $data['count'];
                     ]
                 ]);
             }
+            
             $productId = $request['product_id'];
-          $count = $request['count']; // Установим значение по умолчанию
-      // Валидация count - должно быть числом
-          if (!is_numeric($count)) {
-              return $this->send(422, [
-                  'error' => [
-                      'code' => 422,
-                      'message' => 'Validation error',
-                      'error' => 'Количество должно быть числом'
-                  ]
-              ]);
-          }
+            $count = $request['count']; // Установим значение по умолчанию
+    
+            // Валидация count - должно быть числом
+            if (!is_numeric($count)) {
+                return $this->send(422, [
+                    'error' => [
+                        'code' => 422,
+                        'message' => 'Validation error',
+                        'error' => 'Количество должно быть числом'
+                    ]
+                ]);
+            }
+            
             // Проверка наличия товара
             $product = Product::findOne($productId);
             if (!$product) {
                 return $this->send(404, [
-                                    'error' => [
-                                        'code' => 404,
-                                        'message' => 'Product not found'
-                                    ]
-                                ]);
+                    'error' => [
+                        'code' => 404,
+                        'message' => 'Product not found'
+                    ]
+                ]);
             }
     
             // Создание или обновление записи в корзине
-            $cart = Cart::find()->where(['user_id' => $user->id_user, 'product_id' => $productId])->one();
-
-        if ($cart === null) {
-            // Если товара нет в корзине, создаем новую запись
-            $cart = new Cart();
-            $cart->user_id = $user->id_user;
-            $cart->product_id = $productId;
-            $cart->count = $count;
-        } else {
-            if ($cart->order_id !== null) {
-            // Создаем новую запись
-            $newCartItem = new Cart();
-            $newCartItem->user_id = $user->id_user;
-            $newCartItem->product_id = $productId;
-            $newCartItem->count = $count;
-            if ($newCartItem->save()) {
+            $cart = Cart::find()->where(['user_id' => $user->id_user, 'product_id' => $productId,'order_id' => null], )->one();
+    
+            if ($cart === null) {
+                //Если товара нет в корзине, создаем новую запись
+                $cart = new Cart();
+                $cart->user_id = $user->id_user;
+                $cart->product_id = $productId;
+                $cart->count = $count;
+            }
+             else {
+                if ($cart->order_id !== null) {
+                    // Создаем новую запись
+                    $newCartItem = new Cart();
+                    $newCartItem->user_id = $user->id_user;
+                    $newCartItem->product_id = $productId;
+                    $newCartItem->count = $count;
+                    if ($newCartItem->save()) {
+                        return $this->send(200, [
+                            'data' => [
+                                'status' => 'ok',
+                                'id' => $newCartItem->id_cart,
+                            ]
+                        ]);
+                    } 
+                } else {
+                    // Если order_id равен null, обновляем количество
+                    $cart->count += $count;
+                }
+            }
+    
+            // Сохраняем изменения для существующей записи
+            if ($cart->save()) {
                 return $this->send(200, [
                     'data' => [
                         'status' => 'ok',
-                        'id' => $newCartItem->id_cart,
+                        'id' => $cart->id_cart,
                     ]
                 ]);
-            } } else {
-                // Если товар уже есть в корзине, обновляем количество
-                $cart->count += $count;
-            }}
-    
-            if ($cart->save()) {
-                return $this->send(200,[
-                    'data' => [
-                        'status' => 'ok',
-                        'id' => $cart->id_cart,
-                    ],
-                ]);
-             
-        }  
-            } else{   
-                return $this->send(401, [
+            } 
+        } else {   
+            return $this->send(401, [
                 'error' => [
                     'code' => 401,
                     'message' => 'Unauthorized'
                 ]
-            ]); 
+            ]);
         }
-    }  
-    
+    }
+           
     public function actionDelete()
     {
             Yii::$app->response->format = Response::FORMAT_JSON;
